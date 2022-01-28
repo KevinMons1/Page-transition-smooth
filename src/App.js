@@ -1,25 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import { Routes, Route } from "react-router-dom"
+import gsap from "gsap"
+import { ScrollTrigger, ScrollToPlugin } from 'gsap/all';
+import Home from './Pages/Home'
+import Article from './Pages/Article';
+import Nav from './Components/Nav';
+import Title from "./Components/Title"
+import Cards from "./Components/Cards"
 
 function App() {
+
+  useEffect(() => {
+    // Setup gsap
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+
+    // setup parallax
+    gsap.to(".parallax", {
+      scrollTrigger: {
+        scrub: true
+      },
+      y: (i, target) => - ScrollTrigger.maxScroll(window) * target.dataset.speed,
+      ease: "none"
+    })
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Nav />
+      <main>
+        <Title />
+        <Cards />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/article/:name" element={<Article />} />
+        </Routes> 
+      </main>
+    </>
+  )
 }
 
 export default App;

@@ -1,38 +1,156 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 62.5%; /* Ré-équilibrage du Rem face au Pixel pour des calculs simples */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  /* Variables */
+  --font-roboto: "Roboto", sans-serif;
+  --font-dongle: "Dongle", sans-serif;
+  --color-white: #E8E8E8;
+  --color-bg: #15141F;
+
+  background-color: var(--color-bg);
+  width: 100%;
+  padding: 0 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app {
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* 
+-----------------------------
+Nav
+-----------------------------
+*/
+
+nav {
+  position: fixed;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  padding: 15px 0;
+  top: 0;
+  left: 0;
+  z-index: 10;
 }
 
-.App-link {
-  color: #61dafb;
+nav::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  top: -50%;
+  left: 0;
+  background-color: var(--color-bg);
+  filter: blur(10px);
+  z-index: 9;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav ul {
+  display: flex;
+  z-index: 10;
+}
+
+nav li {
+  list-style: none;
+  margin: 0 25px;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: var(--font-dongle);
+  font-size: 3rem;
+  color: var(--color-white);
+}
+
+/* 
+-----------------------------
+Home
+-----------------------------
+*/
+
+main {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  margin-top: 75px;
+}
+
+h1 {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  font-family: var(--font-dongle);
+  font-size: 20rem;
+  color: var(--color-white);
+  
+}
+
+h2 {
+  text-align: center;
+  font-family: var(--font-roboto);
+  font-size: 7rem;
+  color: var(--color-white);;
+}
+
+section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
+/* 
+-----------------------------
+Card
+-----------------------------
+*/
+
+.card-single {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card {
+  height: 70vh;
+  width: 35vw;
+  min-width: 200px;
+  margin: 50px 0;
+  padding-left: 25px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card h3 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  color: var(--color-white);
+  font-size: 5rem;
+  font-family: var(--font-roboto);
+  z-index: 2;
+}
+
+.card img {
+  height: 100%;
+  transition: 0.5s ease-out;
+}
+
+/* .card:hover img {
+  filter: grayscale(100%);
+} */
+
+.card-down {
+  transform: translateY(150px);
 }
