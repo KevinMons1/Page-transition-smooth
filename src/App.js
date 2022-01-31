@@ -6,7 +6,6 @@ import { ScrollTrigger, ScrollToPlugin } from 'gsap/all';
 import Home from './Pages/Home'
 import Article from './Pages/Article';
 import Nav from './Components/Nav';
-import Title from "./Components/Title"
 import Cards from "./Components/Cards"
 
 function App() {
@@ -23,13 +22,12 @@ function App() {
       y: (i, target) => - ScrollTrigger.maxScroll(window) * target.dataset.speed,
       ease: "none"
     })
-  })
+  }, [])
 
   return (
     <>
       <Nav />
       <main>
-        <Title />
         <Cards />
         <Routes>
           <Route path="/" element={<Home />} />

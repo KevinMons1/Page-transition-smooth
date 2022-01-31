@@ -1,53 +1,59 @@
 import React, { useState } from 'react';
-import gsap, { Power1 } from "gsap"
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import gsap, { Power2 } from "gsap"
 import Card from './Card';
 import data from "../data.js"
 
 export default function Cards() {
 
+    const navigate = useNavigate()
     const [single, setSingle] = useState(null)
 
-    const handleClick = index => {
+    const handleClick = (e, index, path) => {
+        e.preventDefault() 
+
         gsap.set("body", { overflowY: "hidden" })
 
         let articles = gsap.utils.toArray(".card")
         let articlesDisp = articles.filter((el, i) => i !== index)
         const positions = getPositionsElement(articles[index])
         const disappearance = {
-            y: -25,
             opacity: 0,
-            duration: 0.25,
-            ease: Power1.easeOut
+            duration: 0.5,
+            ease: Power2.easeOut
         }
         
-        // gsap.to("h2", disappearance)
+        gsap.to("h1", disappearance)
+
         gsap.to(articlesDisp, {
             ...disappearance,
-            pointerEvents: "none"
-        })
-
-        gsap.to("h1", {
-            y: 0,
-            duration: 0.5,
-            ease: Power1.easeOut,
+            pointerEvents: "none",
             onComplete: () => {
-                gsap.set("body", { overflowY: "auto" })
                 setSingle({
                     ...data[index],
-                    ...positions
+                    ...positions,
+                    scroll: window.pageYOffset
                 })
+                // Wait disappearance animations finish for redirect
+                navigate(path)
             }
         })
     }
 
     const getPositionsElement = (element) => {
         const rect = element.getBoundingClientRect()
-        const left = document.documentElement.scrollLeft
-        const top = window.pageYOffset || document.documentElement.scrollTop
         return {
-            top: rect.top + top,
-            left: rect.left + left
+            top: rect.top,
+            left: rect.left,
+            right: rect.right,
+            bottom: rect.bottom
         }
+    }
+
+    const handleBack = (scroll) => {
+        setSingle(null)
+        navigate("/")
     }
 
     return (
@@ -55,17 +61,18 @@ export default function Cards() {
             {!single ?
                 data.map((item, index) => {
                     return (
-                        <article 
-                            className={index % 2 === 0 ? "card parallax" : "card card-down parallax"}
+                        <Link 
+                            className={index % 2 === 0 ? "card card-home parallax" : "card card-home card-down parallax"}
                             key={index}
                             data-speed={0.2 * ((index + 1) / 5)} 
-                            onClick={() => handleClick(index)}
+                            to={`/article/${data.title}`}
+                            onClick={(e) => handleClick(e, index, `/article/${item.title}`)}
                         >
                             <Card data={item} />
-                        </article>
+                        </Link>
                     )
                 })
-            : <Card data={single} single={true} /> }
+            : <Card data={single} single={true} setSingle={(scroll) => handleBack(scroll)} /> }
         </section>
     )
 }

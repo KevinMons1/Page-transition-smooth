@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arimo:wght@500&family=Roboto&display=swap');
 
 * {
   margin: 0;
@@ -7,16 +7,36 @@
   font-size: 62.5%; /* Ré-équilibrage du Rem face au Pixel pour des calculs simples */
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   /* Variables */
   --font-roboto: "Roboto", sans-serif;
-  --font-dongle: "Dongle", sans-serif;
+  --font-arimo: "Arimo", sans-serif;
   --color-white: #E8E8E8;
   --color-bg: #15141F;
 
   background-color: var(--color-bg);
   width: 100%;
+  min-height: 100vh;
   padding: 0 50px;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-white);
+  border-radius: 5px;
 }
 
 .app {
@@ -65,8 +85,8 @@ nav li {
 
 nav a {
   text-decoration: none;
-  font-family: var(--font-dongle);
-  font-size: 3rem;
+  font-family: var(--font-arimo);
+  font-size: 2rem;
   color: var(--color-white);
 }
 
@@ -83,22 +103,21 @@ main {
   margin-top: 75px;
 }
 
-h1 {
+.home-title {
+  text-align: center;
+  font-family: var(--font-roboto);
+  font-size: 7rem;
+  color: var(--color-white);
+}
+
+.home-subTitle {
   position: fixed;
   top: 0;
   left: 50%;
   transform: translate(-50%, 100%);
-  font-family: var(--font-dongle);
+  font-family: var(--font-arimo);
   font-size: 20rem;
   color: var(--color-white);
-  
-}
-
-h2 {
-  text-align: center;
-  font-family: var(--font-roboto);
-  font-size: 7rem;
-  color: var(--color-white);;
 }
 
 section {
@@ -106,6 +125,48 @@ section {
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
+}
+
+/* 
+-----------------------------
+Article
+-----------------------------
+*/
+
+.article-text {
+  text-align: justify;
+  margin: 25px 0 25px 50%;
+  font-size: 2rem;
+  font-family: var(--font-arimo);
+  color: var(--color-white);
+  transform: translateY(25px);
+  opacity: 0;
+} 
+
+.article-aside {
+  position: absolute;
+  top: 40%;
+  left: 100px;
+  width: 300px;
+  padding: 25px 15px;
+  background-color: rgb(15, 15, 15);
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(25px);
+}
+
+.article-aside h2 {
+  text-align: center;
+  font-size: 5rem;
+  font-family: var(--font-roboto);
+  color: var(--color-white);
+  margin-bottom: 25px;
+}
+
+.article-aside p {
+  font-size: 2.5rem;
+  font-family: var(--font-roboto);
+  color: var(--color-white);
 }
 
 
@@ -117,40 +178,59 @@ Card
 
 .card-single {
   position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .card {
   height: 70vh;
   width: 35vw;
   min-width: 200px;
-  margin: 50px 0;
   padding-left: 25px;
   overflow: hidden;
   cursor: pointer;
 }
 
-.card h3 {
+.card-home {
+  margin: 50px 0;
+}
+
+.card-title {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translate(0, -50%);
   color: var(--color-white);
   font-size: 5rem;
   font-family: var(--font-roboto);
+  transform: translate(0, -50%);
   z-index: 2;
 }
 
 .card img {
   height: 100%;
-  transition: 0.5s ease-out;
+  width: 100%;
+  object-fit: cover;
 }
-
-/* .card:hover img {
-  filter: grayscale(100%);
-} */
 
 .card-down {
   transform: translateY(150px);
+}
+
+.card-back {
+  position: fixed;
+  margin: 15px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0;
+}
+
+.card-back img {
+  width: 35px;
+  height: 35px;
+}
+
+.card-back span {
+  font-size: 2.5rem;
+  font-family: var(--font-roboto);
+  color: var(--color-white);
+  margin-left: 15px;
 }
