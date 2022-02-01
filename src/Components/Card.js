@@ -77,7 +77,7 @@ export default function Card({ data, single, setSingle }) {
             opacity: 1,
             delay: 1,
             duration: 0.5,
-            ease: Power2.easeOut
+            ease: Power2.easeOut,
         })
     }
 

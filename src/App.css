@@ -7,10 +7,6 @@
   font-size: 62.5%; /* Ré-équilibrage du Rem face au Pixel pour des calculs simples */
 }
 
-html {
-  overflow-y: scroll;
-}
-
 body {
   /* Variables */
   --font-roboto: "Roboto", sans-serif;
@@ -20,9 +16,9 @@ body {
 
   background-color: var(--color-bg);
   width: 100%;
+  min-height: 70vh; /* 70vh is size of image */
   padding: 0 50px;
 }
-
 
 ::-webkit-scrollbar {
   width: 10px;

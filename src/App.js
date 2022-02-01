@@ -30,7 +30,6 @@ function App() {
     const elements = ScrollTrigger.getAll()
     
     if (window.innerWidth <= 550) {
-      console.log("test");
       elements.forEach(element => {
         element.kill(true)
       })

@@ -18,10 +18,6 @@ export default function Cards({ single, setSingle }) {
                 ..._data
             })
         } else if (location.pathname === "/") setSingle(null)
-
-        gsap.to(window, {
-            scrollTo: 0
-        })
     }, [location])
 
     const handleClick = (e, index, path) => {
