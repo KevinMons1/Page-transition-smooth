@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import gsap, { Power1 } from "gsap"
 
 export default function Home() {
 
@@ -6,6 +7,12 @@ export default function Home() {
     if (document.querySelector("main").style.display === "block") {
       document.querySelector("main").style.display = "flex"
     }
+
+    gsap.to(".home-title", {
+      opacity: 1,
+      duration: 0.5,
+      ease: Power1.easeOut
+    })
   }, [])
 
   return (
