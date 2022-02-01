@@ -27,7 +27,6 @@ export default function Card({ data, single, setSingle }) {
             ease: Power1.easeOut
         }
 
-        gsap.set("body", { overflow: "hidden" })
         gsap.to(articleRef.current, disappearance)
         gsap.to(".article-aside", {
             ...disappearance,
@@ -53,11 +52,9 @@ export default function Card({ data, single, setSingle }) {
         gsap.to(".card-title", {
             x: "-50%",
             left: "50%",
-            width: "100%",
             fontSize: window.innerWidth <= 768 ? "4rem" : "10rem",
             duration: 1,
-            ease: Power2.easeInOut,
-            onComplete: () => gsap.set("body", { overflowY: "auto" })
+            ease: Power2.easeInOut
         })
 
         gsap.to(".card-back", {

@@ -254,10 +254,11 @@ Card
 
   .card {
     height: 50vh;
-    padding-left: 25px;
+    padding: 0;
   }
 
   .card-title {
+    width: 100%;
     text-align: center;
     font-size: 3rem;
   }

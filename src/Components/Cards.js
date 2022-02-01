@@ -18,13 +18,11 @@ export default function Cards() {
             setSingle({
                 ..._data
             })
-        } 
+        } else if (location.pathname === "/") setSingle(null)
     }, [location])
 
     const handleClick = (e, index, path) => {
         e.preventDefault() 
-
-        gsap.set("body", { overflowY: "hidden" })
 
         let articles = gsap.utils.toArray(".card")
         let articlesDisp = articles.filter((el, i) => i !== index)
