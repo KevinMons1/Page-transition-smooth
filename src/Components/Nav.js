@@ -1,28 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router';
 import gsap, { Power1 } from "gsap"
 
 export default function Nav({ setSingle }) {
 
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const handleBack = e => {
     e.preventDefault()
 
-    const disappearance = {
-        y: -25,
-        opacity: 0,
-        duration: 0.5,
-        ease: Power1.easeOut
+    if (location.pathname !== "/") {
+      const disappearance = {
+          y: -25,
+          opacity: 0,
+          duration: 0.5,
+          ease: Power1.easeOut
+      }
+  
+      gsap.to(".card", disappearance)
+      gsap.to(".article-aside", {
+          ...disappearance,
+          y: window.innerWidth <= 768 ? -125 : -25
+      })
+      gsap.to(".article-text", {
+          ...disappearance,
+          onComplete: () => {
+            gsap.set(".article-text", { display: "none" })
+            setSingle(null)
+            navigate("/")
+          }
+      })
     }
-
-    gsap.to(".card", disappearance)
-    gsap.to(".article-aside", {
-        ...disappearance,
-        y: window.innerWidth <= 768 ? -125 : -25
-    })
-    gsap.to(".article-text", {
-        ...disappearance,
-        onComplete: () => setSingle()
-    })
 }
 
   return (

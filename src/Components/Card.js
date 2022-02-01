@@ -72,6 +72,8 @@ export default function Card({ data, single, setSingle }) {
             ease: Power2.easeOut
         })
 
+        gsap.set(".article-text", { display: "block" })
+
         gsap.to(".article-text", {
             y: 0,
             opacity: 1,

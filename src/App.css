@@ -130,6 +130,7 @@ Article
 */
 
 .article-text {
+  display: none;
   text-align: justify;
   margin: 25px 0 25px 50%;
   font-size: 2rem;
