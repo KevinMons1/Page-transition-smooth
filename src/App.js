@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from "react-router-dom"
 import { useLocation } from 'react-router';
 import gsap from "gsap"
@@ -15,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 function App() {
   
   const location = useLocation()
+  const [single, setSingle] = useState(null)
 
   useEffect(() => {
     window.addEventListener("resize", () => resize())
@@ -54,10 +55,10 @@ function App() {
   return (
     <>
       <header>
-        <Nav />
+        <Nav setSingle={() => setSingle()} />
       </header>
       <main>
-        <Cards />
+        <Cards single={single} setSingle={(data) => setSingle(data)} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/article/:name" element={<Article />} />

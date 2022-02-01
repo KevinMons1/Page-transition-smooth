@@ -34,7 +34,7 @@ export default function Card({ data, single, setSingle }) {
         })
         gsap.to(".article-text", {
             ...disappearance,
-            onComplete: () => setSingle(null)
+            onComplete: () => setSingle()
         })
     }
 

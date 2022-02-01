@@ -5,11 +5,10 @@ import gsap, { Power1 } from "gsap"
 import Card from './Card';
 import data from "../data.js"
 
-export default function Cards() {
+export default function Cards({ single, setSingle }) {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const [single, setSingle] = useState(null)
 
     useEffect(() => {
         if (location.pathname.includes("/article/") && single === null) {
@@ -19,6 +18,10 @@ export default function Cards() {
                 ..._data
             })
         } else if (location.pathname === "/") setSingle(null)
+
+        gsap.to(window, {
+            scrollTo: 0
+        })
     }, [location])
 
     const handleClick = (e, index, path) => {
